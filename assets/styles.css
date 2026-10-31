@@ -5,7 +5,12 @@
   --line: #c2c2bd;
   --ink: #151515;
   --muted: #6b6b66;
-  --accent: #ff6a13;
+  /* 테마 색: 로고의 파랑과 초록 */
+  --brand-blue: #0d47a1;
+  --brand-green: #52a024;
+  --brand-gradient: linear-gradient(90deg, var(--brand-blue), #3e8e1e);
+  --accent: var(--brand-blue);
+  --accent-2: var(--brand-green);
   --dark: #151515;
   --dark-line: #3a3a37;
   --dark-muted: #a8a8a2;
@@ -56,21 +61,24 @@ section[id] { scroll-margin-top: 16px; }
 
 /* shared bits */
 .label { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
-.label::before { content: ""; width: 8px; height: 8px; background: var(--accent); flex: none; }
+.label::before { content: ""; width: 8px; height: 8px; background: var(--accent-2); flex: none; }
 .accent { color: var(--accent); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .accent { background: var(--brand-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+}
 .muted { color: var(--muted); }
 
 .btn {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 13px 22px;
   font: 500 13px/1.2 var(--font-kr);
-  text-decoration: none; color: var(--ink);
+  text-decoration: none; color: #fff;
   background: var(--accent);
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
   transition: filter .15s;
 }
-.btn:hover { filter: brightness(.94); }
-.btn--outline { background: transparent; clip-path: none; box-shadow: inset 0 0 0 1px currentColor; padding: 11px 20px; }
+.btn:hover { filter: brightness(1.18); }
+.btn--outline { color: var(--ink); background: transparent; clip-path: none; box-shadow: inset 0 0 0 1px currentColor; padding: 11px 20px; }
 .btn--outline:hover { background: var(--ink); color: var(--bg); filter: none; }
 .btn[aria-disabled="true"] { cursor: default; }
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -117,7 +125,7 @@ section[id] { scroll-margin-top: 16px; }
 .hero { min-height: 560px; }
 .hero__text { flex: 0 0 560px; justify-content: space-between; padding-block: 56px; }
 .hero__copy { display: flex; flex-direction: column; gap: 24px; }
-.hero__copy::before { content: ""; width: 10px; height: 10px; background: var(--accent); }
+.hero__copy::before { content: ""; width: 10px; height: 10px; background: var(--accent-2); }
 .hero h1 { font-size: clamp(32px, 3.4vw, 46px); line-height: 1.35; letter-spacing: -.02em; font-weight: 700; }
 .hero__sub { font-size: 19px; font-weight: 500; color: var(--muted); }
 .hero .btn-row { padding-top: 16px; }
@@ -158,7 +166,7 @@ section[id] { scroll-margin-top: 16px; }
 /* roadmap */
 .step { padding: 32px 28px; gap: 18px; }
 .step__head { display: flex; justify-content: space-between; align-items: center; }
-.step__num { font-family: var(--font-display); font-weight: 700; font-size: 16px; background: var(--accent); padding: 4px 10px; }
+.step__num { font-family: var(--font-display); font-weight: 700; font-size: 16px; background: var(--accent-2); color: var(--ink); padding: 4px 10px; }
 .step__arrow { font-family: var(--font-mono); font-size: 24px; color: var(--muted); line-height: 1; }
 .step .ph { flex: none; height: 170px; }
 .step h3 { font-size: 20px; }
@@ -185,7 +193,7 @@ section[id] { scroll-margin-top: 16px; }
 .footer .logo__mark { background: #f4f4f2; padding: 3px; }
 .footer__links { flex: 0 0 280px; align-items: flex-end; }
 .footer__links a { font-size: 13px; font-weight: 500; text-decoration: none; }
-.footer__links a:hover { color: var(--accent); }
+.footer__links a:hover { color: var(--accent-2); }
 .footer__copy { font-family: var(--font-mono); font-size: 11px; color: var(--dark-muted); }
 
 /* CEO greeting (inside index.html) */
@@ -194,7 +202,7 @@ section[id] { scroll-margin-top: 16px; }
 .section-head__title p a:hover { color: var(--accent); }
 .nav a[aria-current="page"] { color: var(--accent); }
 .letter__aside { flex: 0 0 320px; justify-content: space-between; }
-.letter__mark { width: 10px; height: 10px; background: var(--accent); }
+.letter__mark { width: 10px; height: 10px; background: var(--accent-2); }
 .letter__aside-text { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); line-height: 1.8; }
 .letter__body { padding-block: 64px; gap: 22px; max-width: none; }
 .letter__body > * { max-width: 46em; }
