@@ -11,9 +11,9 @@
   --dark-muted: #a8a8a2;
   --ph: #d8d8d4;
 
-  --font-kr: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-  --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --font-display: "Tektur", var(--font-kr);
+  --font-kr: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: var(--font-kr);
+  --font-display: var(--font-kr);
 
   --gutter: clamp(16px, 2.8vw, 40px);
   --cell-pad: clamp(24px, 2.8vw, 40px);
