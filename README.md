@@ -26,6 +26,8 @@
 
 ## 배포
 
+- `assets/styles.css`를 고치면 `index.html`, `privacy.html`의 `styles.css?v=숫자`도 하나 올려 주세요. 방문자 브라우저가 예전 디자인을 기억하지 않고 바로 새 디자인을 받습니다.
+
 - **Vercel**: vercel.com → Add New → Project → 이 레포 선택 → Deploy. 설정은 기본값 그대로 두면 됩니다.
 - **GitHub Pages**: 레포 Settings → Pages → Source를 `Deploy from a branch`, Branch를 `main` / `(root)`로 저장합니다.
 
