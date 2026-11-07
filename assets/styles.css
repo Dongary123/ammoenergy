@@ -447,3 +447,14 @@ span.tech__icon { background: linear-gradient(135deg, rgba(13, 71, 161, .55), rg
   .header { position: relative; top: 0; }
   section[id] { scroll-margin-top: 16px; }
 }
+
+/* principle icons */
+.principle__head { display: flex; justify-content: space-between; align-items: center; }
+.principle__icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px; border-radius: 16px; flex: none;
+  color: var(--brand-blue);
+  background: linear-gradient(135deg, rgba(13, 71, 161, .12), rgba(82, 160, 36, .18));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .8);
+}
+.principle:nth-child(1) .principle__icon, .principle:nth-child(3) .principle__icon { color: #3e8e1e; }
