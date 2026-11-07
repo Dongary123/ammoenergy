@@ -250,3 +250,94 @@ span.tech__icon { background: var(--dark-line); }
   .section-head h2, .section-head h3 { font-size: 26px; }
   .footer__links { align-items: flex-start; }
 }
+
+/* ==========================================================================
+   Soft UI layer (2026-11): same colors, same order of sections.
+   Grid lines become separate rounded panels with gaps and soft shadows,
+   buttons and badges become pills.
+   ========================================================================== */
+:root {
+  --card: #fbfbf9;
+  --radius: 22px;
+  --radius-sm: 14px;
+  --gap: 16px;
+  --shadow: 0 1px 2px rgba(21, 21, 21, .04), 0 10px 30px -12px rgba(21, 21, 21, .12);
+  --shadow-hover: 0 2px 4px rgba(21, 21, 21, .05), 0 18px 40px -14px rgba(21, 21, 21, .2);
+}
+
+.page { padding-bottom: 24px; }
+.grid { border: 0; display: flex; flex-direction: column; gap: var(--gap); }
+main, main > section:not(.row) { display: flex; flex-direction: column; gap: var(--gap); }
+
+.row { border: 0; gap: var(--gap); }
+.cell { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); }
+.cell + .cell { border-left: 0; }
+.cell--flush { overflow: hidden; }
+
+/* header: one floating bar */
+.header { background: var(--card); border-radius: 999px; box-shadow: var(--shadow); gap: 0; padding-inline: 12px; }
+.header .cell { background: none; box-shadow: none; border-radius: 0; }
+.nav a { padding: 8px 4px; border-radius: 999px; transition: color .15s; }
+
+/* section heads sit on the page, not in panels */
+.section-head { align-items: flex-end; margin-top: 24px; }
+.section-head .cell { background: none; box-shadow: none; }
+.section-head .cell:first-child { padding-block: 8px; }
+.section-head__title { padding-block: 8px; }
+
+/* shared bits */
+.label { padding: 6px 12px 6px 10px; border-radius: 999px; background: rgba(82, 160, 36, .1); color: #2f6b12; font-weight: 500; gap: 8px; align-self: flex-start; }
+.label::before { border-radius: 50%; }
+.btn { clip-path: none; border-radius: 999px; padding: 13px 24px; box-shadow: 0 6px 16px -8px rgba(13, 71, 161, .6); transition: filter .15s, transform .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn--outline { box-shadow: inset 0 0 0 1px rgba(21, 21, 21, .25); padding: 12px 22px; }
+.btn--outline:hover { box-shadow: inset 0 0 0 1px var(--ink); transform: none; }
+.btn[aria-disabled="true"]:hover { transform: none; }
+
+.media, .ph { border-radius: var(--radius-sm); }
+.cell--flush > .media { border-radius: 0; }
+.hero__copy::before, .letter__mark { border-radius: 50%; }
+.step__num { border-radius: 999px; padding: 4px 12px; font-size: 14px; color: #fff; }
+.principle .step__num { background: var(--accent-2); }
+
+/* cards lift a little on hover */
+.card, .step, .principle { transition: box-shadow .2s, transform .2s; }
+@media (hover: hover) {
+  .card:hover, .step:hover, .principle:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+}
+
+/* technology: one dark rounded panel holding lighter dark cards */
+#technology { background: var(--dark); border-radius: calc(var(--radius) + 8px); padding: var(--gap); margin-top: 24px; }
+#technology .section-head { margin-top: 0; }
+.dark { background: none; }
+.dark .cell { background: #1f1f1d; box-shadow: inset 0 0 0 1px var(--dark-line); }
+.dark.section-head .cell { background: none; box-shadow: none; }
+.dark .label { background: rgba(82, 160, 36, .18); color: #9bd47a; }
+span.tech__icon { border-radius: var(--radius-sm); }
+
+/* contact */
+.contact { margin-top: 24px; }
+
+/* footer: dark rounded panel */
+.footer { background: var(--dark); border: 0; border-radius: var(--radius); gap: 0; }
+.footer .cell { background: none; box-shadow: none; }
+.footer .logo__mark { border-radius: 8px; }
+
+/* letter */
+.letter__sign { border-top-color: rgba(21, 21, 21, .1); }
+
+/* responsive: gaps instead of lines */
+@media (max-width: 1100px) {
+  .row--cards > .cell, .row--steps > .cell, .row--tech > .cell { flex: 1 1 calc(50% - var(--gap)); border-top: 0 !important; }
+  .row--cards > .cell:nth-child(3) { flex-basis: 100%; }
+}
+@media (max-width: 760px) {
+  :root { --gap: 12px; --radius: 18px; }
+  .cell + .cell { border-top: 0 !important; }
+  .header { border-radius: var(--radius); padding-inline: 0; }
+  .header .cell + .cell { padding-top: 0; }
+  .section-head { margin-top: 12px; align-items: stretch; }
+  .section-head .cell + .cell { padding-top: 0; }
+  #technology { margin-top: 12px; padding: 10px; }
+  .footer .cell + .cell { padding-top: 0; }
+}
