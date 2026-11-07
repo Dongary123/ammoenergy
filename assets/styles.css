@@ -341,3 +341,109 @@ span.tech__icon { border-radius: var(--radius-sm); }
   #technology { margin-top: 12px; padding: 10px; }
   .footer .cell + .cell { padding-top: 0; }
 }
+
+/* ==========================================================================
+   Glass layer (2026-11): soft brand-color gradients, a faint square pattern,
+   frosted-glass panels. Colors stay the logo blue and green.
+   ========================================================================== */
+:root {
+  --glass: rgba(255, 255, 255, .58);
+  --glass-strong: rgba(255, 255, 255, .78);
+  --glass-edge: rgba(255, 255, 255, .85);
+  --glass-blur: blur(18px) saturate(150%);
+  --pattern-line: rgba(21, 21, 21, .045);
+  --pattern-size: 32px;
+  --tint-blue: rgba(13, 71, 161, .14);
+  --tint-green: rgba(82, 160, 36, .14);
+}
+
+/* page background: grey base, two soft color glows, faint squares that fade out */
+body { background-color: var(--bg); position: relative; isolation: isolate; }
+body::before, body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+body::before {
+  background:
+    radial-gradient(60vmax 45vmax at 8% 0%, var(--tint-blue), transparent 70%),
+    radial-gradient(55vmax 45vmax at 100% 35%, var(--tint-green), transparent 70%),
+    radial-gradient(50vmax 40vmax at 30% 100%, rgba(13, 71, 161, .08), transparent 70%);
+}
+body::after {
+  background-image:
+    linear-gradient(var(--pattern-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pattern-line) 1px, transparent 1px);
+  background-size: var(--pattern-size) var(--pattern-size);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 85%);
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 85%);
+}
+
+/* frosted panels */
+.cell {
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 0 0 1px var(--glass-edge), var(--shadow);
+}
+.section-head .cell, .header .cell, .footer .cell { -webkit-backdrop-filter: none; backdrop-filter: none; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .cell { background: var(--glass-strong); }
+}
+
+/* header: frosted bar that stays at the top while scrolling */
+.header {
+  position: sticky; top: 12px; z-index: 20;
+  background: rgba(255, 255, 255, .62);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 0 0 1px var(--glass-edge), var(--shadow);
+}
+section[id] { scroll-margin-top: 96px; }
+
+/* hero and contact get a soft blue→green wash with the square pattern */
+.hero__text, .contact__text {
+  background:
+    linear-gradient(var(--pattern-line) 1px, transparent 1px) 0 0 / var(--pattern-size) var(--pattern-size),
+    linear-gradient(90deg, var(--pattern-line) 1px, transparent 1px) 0 0 / var(--pattern-size) var(--pattern-size),
+    radial-gradient(120% 90% at 0% 0%, rgba(13, 71, 161, .10), transparent 60%),
+    radial-gradient(100% 90% at 100% 100%, rgba(82, 160, 36, .12), transparent 60%),
+    var(--glass);
+}
+
+/* empty image slots: gentle gradient instead of flat grey */
+.media {
+  background:
+    linear-gradient(rgba(255, 255, 255, .35) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(90deg, rgba(255, 255, 255, .35) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(135deg, #d5dbe6 0%, #dcdcd8 50%, #d9e3d2 100%);
+}
+
+/* buttons and badges: subtle gradients in the same colors */
+.btn:not(.btn--outline) { background: linear-gradient(135deg, #1a5cc4 0%, var(--brand-blue) 60%); }
+.btn--outline { background: rgba(255, 255, 255, .5); }
+.btn--outline:hover { background: var(--ink); }
+.step__num { background: linear-gradient(135deg, #6cbd3a, var(--brand-green)); }
+.label { background: rgba(255, 255, 255, .6); box-shadow: inset 0 0 0 1px rgba(82, 160, 36, .25); }
+.label::before { background: linear-gradient(135deg, var(--brand-blue), var(--brand-green)); }
+
+/* technology: dark panel with color glows, squares and glass cards */
+#technology {
+  background:
+    linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px) 0 0 / var(--pattern-size) var(--pattern-size),
+    linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px) 0 0 / var(--pattern-size) var(--pattern-size),
+    radial-gradient(70% 90% at 0% 0%, rgba(13, 71, 161, .45), transparent 60%),
+    radial-gradient(60% 80% at 100% 100%, rgba(82, 160, 36, .32), transparent 60%),
+    var(--dark);
+}
+.dark .cell {
+  background: rgba(255, 255, 255, .05);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
+}
+.dark.section-head .cell { background: none; box-shadow: none; }
+span.tech__icon { background: linear-gradient(135deg, rgba(13, 71, 161, .55), rgba(82, 160, 36, .45)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .15); }
+.dark .label { background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); color: #cfe9bf; }
+
+/* footer: dark with a faint glow */
+.footer { background: radial-gradient(80% 140% at 0% 0%, rgba(13, 71, 161, .35), transparent 60%), var(--dark); }
+
+@media (max-width: 760px) {
+  .header { position: relative; top: 0; }
+  section[id] { scroll-margin-top: 16px; }
+}
